@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration strict="true" name="XMLConfigTest">
+
+    <Appenders>
+
+        <Console name="STDOUT">
+            <PatternLayout>
+                <Pattern>%d %p %c{3.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="rollingFile" fileName="logs/log4j2.log" filePattern="logs/app-%d{MM-dd-yyyy}-%i.log.gz">
+
+            <PatternLayout>
+                <Pattern>%d %p %c{3.} [%t] %m%n</Pattern>
+            </PatternLayout>
+
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="rollingFile"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
